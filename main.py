@@ -119,7 +119,7 @@ elif exercise == 5:
         def info(self):
             print(f'Nom:{self.name}\nConstitution:{self.constitution}\nDefense:{self.defense}'
                   f'\nIntelligence:{self.intelligence}'
-                  f'\nDexterite:{self.dexterite}\nCharis:m{self.charisme}\nSagesse:{self.sagesse}')
+                  f'\nDexterite:{self.dexterite}\nCharism:{self.charisme}\nSagesse:{self.sagesse}')
 
     a = Hero()
     a.info()
