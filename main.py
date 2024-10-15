@@ -6,7 +6,7 @@ plusieurs exercise de tp4
 """
 import math
 import random
-
+from dataclasses import dataclass
 exercise = int(input('Quel exercise voulez vous voir?:'))
 
 if exercise == 1:
@@ -90,39 +90,47 @@ elif exercise == 4:
     a.dommage()
     a.est_vivant()
 elif exercise == 5:
-    class Hero:
+    @dataclass
+    class HeroData:
+        name: str
+        constitution: int
+        force: int
+        defense: int
+        intelligence: int
+        dexterite: int
+        charisme: int
+        sagesse: int
+        qte_dommage: int
+
+    class HeroMain:
         def __init__(self):
-            self.name = input('Quel est le nom de votre Hero?')
-            self.constitution = random.randint(1, 20)
-            self.force = random.randint(1, 20)
-            self.defense = random.randint(1, 20)
-            self.intelligence = random.randint(1, 20)
-            self.dexterite = random.randint(1, 20)
-            self.charisme = random.randint(1, 20)
-            self.sagesse = random.randint(1, 20)
-            self.qte_dommage = random.randint(1, 10)
+            self.data = HeroData(str(input('Quel est le nom de votre Hero?')),
+                                 random.randint(1, 20), random.randint(1, 20),
+                                 random.randint(1, 20), random.randint(1, 20),
+                                 random.randint(1, 20), random.randint(1, 20),
+                                 random.randint(1, 20), random.randint(1, 10))
 
         def attque(self):
-            f_attaque = self.force+random.randint(1, 6)
+            f_attaque = self.data.force+random.randint(1, 6)
             print(f'Attaque:{f_attaque}')
 
         def dommage(self):
-            self.constitution -= self.qte_dommage - self.defense
-            print(f'Dommage recu:{self.qte_dommage}')
+            self.data.constitution -= self.data.qte_dommage - self.data.defense
+            print(f'Dommage recu:{self.data.qte_dommage}')
 
         def est_vivant(self):
-            if self.constitution > 0:
+            if self.data.constitution > 0:
                 print('vivant')
             else:
                 print('mort')
 
         def info(self):
-            print(f'Nom:{self.name}\nConstitution:{self.constitution}\nDefense:{self.defense}'
-                  f'\nIntelligence:{self.intelligence}'
-                  f'\nDexterite:{self.dexterite}\nCharism:{self.charisme}\nSagesse:{self.sagesse}')
+            print(f'Nom:{self.data.name}\nConstitution:{self.data.constitution}\nDefense:{self.data.defense}'
+                  f'\nIntelligence:{self.data.intelligence}'
+                  f'\nDexterite:{self.data.dexterite}\nCharism:{self.data.charisme}\nSagesse:{self.data.sagesse}')
 
-    a = Hero()
-    a.info()
-    a.attque()
-    a.dommage()
-    a.est_vivant()
+    hero = HeroMain()
+    hero.info()
+    hero.attque()
+    hero.dommage()
+    hero.est_vivant()
