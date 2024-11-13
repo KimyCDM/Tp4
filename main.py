@@ -11,15 +11,17 @@ exercise = int(input('Quel exercise voulez vous voir?:'))
 
 if exercise == 1:
     class StringFoo:
-        message = input('Quel est votre message?:')
+        def __init__(self):
+            self.message = input('Quel est votre message?:')
 
-    def set_string(message):
-        StringFoo.message = str(message)
+        def set_string(self):
+            self.message = str(self.message)
 
-    def print_string(message):
-        print(message.upper())
-    set_string(StringFoo.message)
-    print_string(StringFoo.message)
+        def print_string(self):
+            print(self.message.upper())
+    string = StringFoo()
+    string.set_string()
+    string.print_string()
 
 elif exercise == 2:
     class Rectangle:
